@@ -11,4 +11,7 @@
     <string name="sign_in">Sign In</string>
     <string name="title_activity_sign_up_page1">SignUpPage1</string>
     <string name="title_activity_sign_up_page2">SignUpPage2</string>
+    <string name="brand">Brand</string>
+    <string name="car_model">Model</string>
+    <string name="color">Color</string>
 </resources>

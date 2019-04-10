@@ -11,4 +11,7 @@
     <string name="car_details">CAR DETAILS</string>
     <string name="prev"><![CDATA[< Prev]]></string>
     <string name="sign_up2">Sign Up</string>
+    <string name="body">Body</string>
+    <string name="manufacturing_year">Manufacturing Year</string>
+    <string name="license_plate">License Plate</string>
 </resources>

@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
-        android:id="@+id/first_name"
+        android:id="@+id/body"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
@@ -45,18 +45,18 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="@string/first_name"
-        android:inputType="none|textNoSuggestions"
+        android:hint="@string/body"
+        android:inputType="text"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhitePressed"
-        app:layout_constraintBottom_toTopOf="@+id/last_name"
+        app:layout_constraintBottom_toTopOf="@+id/brand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     <EditText
-        android:id="@+id/last_name"
+        android:id="@+id/brand"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
@@ -64,18 +64,18 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="@string/last_name"
-        android:inputType="none|textNoSuggestions"
+        android:hint="@string/brand"
+        android:inputType="text"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhitePressed"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@+id/model"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+        app:layout_constraintTop_toBottomOf="@+id/body" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/model"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
@@ -83,18 +83,18 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="@string/e_mail"
-        android:inputType="textEmailAddress"
+        android:hint="@string/car_model"
+        android:inputType="text"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhitePressed"
-        app:layout_constraintBottom_toTopOf="@+id/phone_no"
+        app:layout_constraintBottom_toTopOf="@+id/color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/brand" />
 
     <EditText
-        android:id="@+id/phone_no"
+        android:id="@+id/color"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
@@ -102,18 +102,18 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="@string/phone_number"
-        android:inputType="phone"
+        android:hint="@string/color"
+        android:inputType="text"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhitePressed"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toTopOf="@+id/manufacturing_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/model" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/manufacturing_year"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="60dp"
@@ -121,33 +121,33 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/manufacturing_year"
+        android:inputType="text"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhitePressed"
+        app:layout_constraintBottom_toTopOf="@+id/license_plate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/color" />
+
+    <EditText
+        android:id="@+id/license_plate"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:hint="@string/license_plate"
         android:inputType="textPassword"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhitePressed"
-        app:layout_constraintBottom_toTopOf="@+id/confirm_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_no" />
-
-    <EditText
-        android:id="@+id/confirm_password"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword"
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorWhitePressed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/manufacturing_year" />
 
     <ImageView
         android:id="@+id/elipse1"
@@ -160,7 +160,7 @@
         app:layout_constraintEnd_toStartOf="@+id/elipse2"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password"
+        app:layout_constraintTop_toBottomOf="@+id/license_plate"
         app:srcCompat="@drawable/ic_ellipse_2" />
 
     <ImageView
@@ -172,7 +172,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/elipse1"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password"
+        app:layout_constraintTop_toBottomOf="@+id/license_plate"
         app:srcCompat="@drawable/ic_ellipse_1" />
 
     <TextView
@@ -187,7 +187,7 @@
         android:textColor="@drawable/forgot_password"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/elipse1"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password" />
+        app:layout_constraintTop_toBottomOf="@+id/license_plate" />
 
     <Button
         android:id="@+id/login_button"
