@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AloCar-FrontEnd</string>
+    <string name="welcome_to_alocar">WELCOME TO ALOCAR</string>
+    <string name="login_button">Login Button</string>
+    <string name="logo">Logo</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="not_a_member_yet">Not a member yet?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="title_activity_sign_up_page1">SignUpPage1</string>
+    <string name="title_activity_sign_up_page2">SignUpPage2</string>
 </resources>

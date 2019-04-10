@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="personal_details">PERSONAL DETAILS</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="next"><![CDATA[Next >]]></string>
+    <string name="already_a_member">Already a member?</string>
+    <string name="car_details">CAR DETAILS</string>
+    <string name="prev"><![CDATA[< Prev]]></string>
+    <string name="sign_up2">Sign Up</string>
+</resources>
