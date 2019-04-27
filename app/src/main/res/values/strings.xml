@@ -5,13 +5,15 @@
     <string name="logo">Logo</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="sign_up">SIGN UP</string>
     <string name="not_a_member_yet">Not a member yet?</string>
-    <string name="sign_in">Sign In</string>
+    <string name="sign_in">SIGN IN</string>
     <string name="title_activity_sign_up_page1">SignUpPage1</string>
     <string name="title_activity_sign_up_page2">SignUpPage2</string>
     <string name="brand">Brand</string>
     <string name="car_model">Model</string>
     <string name="color">Color</string>
+    <string name="registration_successfull">REGISTRATION SUCCESSFULL!</string>
+    <string name="finish">FINISH</string>
 </resources>

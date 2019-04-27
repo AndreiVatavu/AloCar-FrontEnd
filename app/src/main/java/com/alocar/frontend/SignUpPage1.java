@@ -7,6 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
+
+import com.alocar.frontend.request.SignUpRequest;
 
 public class SignUpPage1 extends AppCompatActivity {
 
@@ -29,6 +32,14 @@ public class SignUpPage1 extends AppCompatActivity {
 
     public void signUpPage2(View view) {
         Intent signUpPage2Intent = new Intent(this, SignUpPage2.class);
+        SignUpRequest signUpRequest = new SignUpRequest.SignUpRequestBuilder()
+                .withFirstName(((EditText)findViewById(R.id.first_name)).getText().toString())
+                .withLastName(((EditText)findViewById(R.id.last_name)).getText().toString())
+                .withEmailAddress(((EditText)findViewById(R.id.email)).getText().toString())
+                .withPhoneNumber(((EditText)findViewById(R.id.phone_no)).getText().toString())
+                .withPassword(((EditText)findViewById(R.id.password)).getText().toString())
+                .build();
+        signUpPage2Intent.putExtra("personalDetails", signUpRequest);
         startActivity(signUpPage2Intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
