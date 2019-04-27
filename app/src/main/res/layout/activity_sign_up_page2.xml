@@ -202,13 +202,13 @@
         android:onClick="signUp"
         android:text="@string/sign_up2"
         android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toTopOf="@+id/not_member"
+        app:layout_constraintBottom_toTopOf="@+id/already_member"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/elipse1" />
 
     <TextView
-        android:id="@+id/sign_up"
+        android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -223,7 +223,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/not_member"
+        android:id="@+id/already_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -232,7 +232,7 @@
         android:onClick="goBack"
         android:text="@string/already_a_member"
         android:textColor="@drawable/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/sign_up"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

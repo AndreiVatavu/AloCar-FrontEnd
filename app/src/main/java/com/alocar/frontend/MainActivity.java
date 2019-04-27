@@ -2,12 +2,14 @@ package com.alocar.frontend;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends BaseActivity {
 
@@ -15,6 +17,7 @@ public class MainActivity extends BaseActivity {
     ImageView banner;
     TextView notMember;
     TextView signUp;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +25,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         logo = findViewById(R.id.logo);
         banner = findViewById(R.id.banner);
-        notMember = findViewById(R.id.not_member);
-        signUp = findViewById(R.id.sign_up);
+        notMember = findViewById(R.id.already_member);
+        signUp = findViewById(R.id.sign_in);
         attachKeyboardListeners(findViewById(R.id.login_screen));
     }
 
@@ -37,14 +40,19 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onHideKeyboard() {
-        logo.setVisibility(View.VISIBLE);
-        banner.setVisibility(View.VISIBLE);
-        notMember.setVisibility(View.VISIBLE);
-        signUp.setVisibility(View.VISIBLE);
+        logo.post(new Runnable() {
+            @Override
+            public void run() {
+                logo.setVisibility(View.VISIBLE);
+                banner.setVisibility(View.VISIBLE);
+                notMember.setVisibility(View.VISIBLE);
+                signUp.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public void signUp(View view) {
-        Intent signUpIntent = new Intent(this, SignUpPage1.class);
+        Intent signUpIntent = new Intent(this, SignUpActivity.class);
         startActivity(signUpIntent);
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top);
     }
@@ -61,5 +69,24 @@ public class MainActivity extends BaseActivity {
             password.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
         password.setSelection(password.getText().length());
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

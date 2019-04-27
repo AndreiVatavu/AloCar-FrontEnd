@@ -96,7 +96,7 @@
             app:layout_constraintGuide_percent="1" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/email"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginStart="4dp"
@@ -105,7 +105,7 @@
             android:fontFamily="@font/acumin_pro"
             android:hint="@string/e_mail"
             android:importantForAutofill="no"
-            android:inputType="none|textNoSuggestions"
+            android:inputType="textEmailAddress|textNoSuggestions"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhitePressed"
             android:textSize="14sp"
@@ -130,7 +130,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toEndOf="@+id/key"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <Button
             android:id="@+id/login_button"
@@ -215,7 +215,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/sign_up"
+        android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="182dp"
@@ -230,11 +230,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/not_member"
+        app:layout_constraintStart_toEndOf="@+id/already_member"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/not_member"
+        android:id="@+id/already_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -244,7 +244,7 @@
         android:onClick="signUp"
         android:text="@string/not_a_member_yet"
         android:textColor="@drawable/forgot_password"
-        app:layout_constraintBottom_toTopOf="@+id/sign_up"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
