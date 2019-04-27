@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6C3694</color>
-    <color name="colorPrimaryDark">#1D0C5C</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryDark">#1C171E</color>
+    <color name="colorAccent">#319CD6</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhitePressed">#BFFFFFFF</color>
-    <color name="loginBorder">#707070</color>
-    <color name="signUp">#C32E48</color>
-    <color name="signUpPressed">#BFC32E48</color>
+    <color name="loginBorder">#40FFFFFF</color>
+    <color name="signUp">#319CD6</color>
+    <color name="signUpPressed">#BF319CD6</color>
 </resources>
