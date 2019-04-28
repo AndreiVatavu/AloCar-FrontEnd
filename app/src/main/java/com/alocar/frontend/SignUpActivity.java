@@ -63,9 +63,7 @@ public class SignUpActivity extends BaseActivity {
     }
 
     public void goBack(View view) {
-        Intent loginIntent = new Intent(this, MainActivity.class);
-        startActivity(loginIntent);
-        overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
+        onBackPressed();
     }
 
     public void showPassword(View view) {
