@@ -1,4 +1,4 @@
-package com.alocar.frontend;
+package com.alocar.frontend.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.alocar.frontend.R;
 
 public class MainActivity extends BaseActivity {
 
@@ -51,6 +53,25 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
+
     public void signUp(View view) {
         Intent signUpIntent = new Intent(this, SignUpActivity.class);
         startActivity(signUpIntent);
@@ -71,22 +92,8 @@ public class MainActivity extends BaseActivity {
         password.setSelection(password.getText().length());
     }
 
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+    public void login(View view) {
+        Intent messengerIntent = new Intent(this, MessengerActivity.class);
+        startActivity(messengerIntent);
     }
 }

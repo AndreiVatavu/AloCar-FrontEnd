@@ -1,4 +1,4 @@
-package com.alocar.frontend.request;
+package com.alocar.frontend.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,18 +15,6 @@ public class SignUpRequest implements Serializable {
     private String phoneNumber;
     @JsonProperty("password")
     private String password;
-    @JsonProperty("body")
-    private String body;
-    @JsonProperty("brand")
-    private String brand;
-    @JsonProperty("model")
-    private String model;
-    @JsonProperty("color")
-    private String color;
-    @JsonProperty("manufacturingYear")
-    private String manufacturingYear;
-    @JsonProperty("licensePlate")
-    private String licensePlate;
 
     public SignUpRequest() {
     }
@@ -71,66 +59,12 @@ public class SignUpRequest implements Serializable {
         this.password = password;
     }
 
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getManufacturingYear() {
-        return manufacturingYear;
-    }
-
-    public void setManufacturingYear(String manufacturingYear) {
-        this.manufacturingYear = manufacturingYear;
-    }
-
-    public String getLicensePlate() {
-        return licensePlate;
-    }
-
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
-    }
-
     public static class SignUpRequestBuilder {
         private String firstName;
         private String lastName;
         private String emailAddress;
         private String phoneNumber;
         private String password;
-        private String body;
-        private String brand;
-        private String model;
-        private String color;
-        private String manufacturingYear;
-        private String licensePlate;
 
         public SignUpRequestBuilder() {
 
@@ -161,36 +95,6 @@ public class SignUpRequest implements Serializable {
             return this;
         }
 
-        public SignUpRequestBuilder withBody(String body) {
-            this.body = body;
-            return this;
-        }
-
-        public SignUpRequestBuilder withBrand(String brand) {
-            this.brand = brand;
-            return this;
-        }
-
-        public SignUpRequestBuilder withModel(String model) {
-            this.model = model;
-            return this;
-        }
-
-        public SignUpRequestBuilder withColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public SignUpRequestBuilder withMManufacturingYear(String manufacturingYear) {
-            this.manufacturingYear = manufacturingYear;
-            return this;
-        }
-
-        public SignUpRequestBuilder withLicensePlate(String licensePlate) {
-            this.licensePlate = licensePlate;
-            return this;
-        }
-
         public SignUpRequest build() {
             SignUpRequest signUpRequest = new SignUpRequest();
             signUpRequest.setFirstName(this.firstName);
@@ -198,12 +102,6 @@ public class SignUpRequest implements Serializable {
             signUpRequest.setEmailAddress(this.emailAddress);
             signUpRequest.setPhoneNumber(this.phoneNumber);
             signUpRequest.setPassword(this.password);
-            signUpRequest.setBody(this.body);
-            signUpRequest.setBrand(this.brand);
-            signUpRequest.setModel(this.model);
-            signUpRequest.setColor(this.color);
-            signUpRequest.setManufacturingYear(this.manufacturingYear);
-            signUpRequest.setLicensePlate(this.licensePlate);
             return signUpRequest;
         }
     }

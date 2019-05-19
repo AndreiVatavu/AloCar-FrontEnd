@@ -1,4 +1,4 @@
-package com.alocar.frontend;
+package com.alocar.frontend.activities;
 
 import android.app.Activity;
 import android.content.Intent;

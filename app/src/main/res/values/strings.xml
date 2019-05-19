@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AloCar-FrontEnd</string>
+    <string name="app_name">AloCar</string>
     <string name="welcome_to_alocar">WELCOME TO ALOCAR</string>
     <string name="login_button">Login Button</string>
     <string name="logo">Logo</string>
@@ -16,4 +16,13 @@
     <string name="color">Color</string>
     <string name="registration_successfull">REGISTRATION SUCCESSFULL!</string>
     <string name="finish">FINISH</string>
+    <string name="title_activity_messenger">Messenger</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="not_available">Not available</string>
+    <string name="server_error">Server Error</string>
 </resources>

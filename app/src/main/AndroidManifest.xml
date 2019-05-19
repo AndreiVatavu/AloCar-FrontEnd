@@ -14,18 +14,22 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.MessengerActivity"
+            android:label="@string/title_activity_messenger"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.SignUpActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".SignUpPage2"
+            android:name=".activities.SignUpPage2"
             android:label="@string/title_activity_sign_up_page2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpPage1"
+            android:name=".activities.SignUpPage1"
             android:label="@string/title_activity_sign_up_page1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

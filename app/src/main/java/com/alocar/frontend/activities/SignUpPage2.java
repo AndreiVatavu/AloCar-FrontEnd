@@ -1,21 +1,21 @@
-package com.alocar.frontend;
+package com.alocar.frontend.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.alocar.frontend.request.SignUpRequest;
+import com.alocar.frontend.R;
+import com.alocar.frontend.models.SignUpRequest;
 
 import org.springframework.web.client.RestTemplate;
 
+
+@Deprecated
 public class SignUpPage2 extends AppCompatActivity {
 
     SignUpRequest signUpRequest;
@@ -46,12 +46,6 @@ public class SignUpPage2 extends AppCompatActivity {
     }
 
     public void signUp(View view) {
-        signUpRequest.setBody(((EditText)findViewById(R.id.body)).getText().toString());
-        signUpRequest.setBrand(((EditText)findViewById(R.id.brand)).getText().toString());
-        signUpRequest.setModel(((EditText)findViewById(R.id.model)).getText().toString());
-        signUpRequest.setColor(((EditText)findViewById(R.id.color)).getText().toString());
-        signUpRequest.setManufacturingYear(((EditText)findViewById(R.id.manufacturing_year)).getText().toString());
-        signUpRequest.setLicensePlate(((EditText)findViewById(R.id.license_plate)).getText().toString());
 
         new SignUpRequestTask(getApplicationContext()).execute();
     }

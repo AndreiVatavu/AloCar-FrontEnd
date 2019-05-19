@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.SignUpPage1"
-    tools:showIn="@layout/activity_sign_up_page1">
+    tools:context=".activities.MessengerActivity"
+    tools:showIn="@layout/app_bar_messenger">
 
 </android.support.constraint.ConstraintLayout>

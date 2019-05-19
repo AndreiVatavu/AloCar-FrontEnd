@@ -17,4 +17,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Style_Menu_Iteme">
+        <item name="fontFamily">@font/acumin_pro</item>
+    </style>
+
+
 </resources>

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_bg"
     android:minHeight="1000dp"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/banner_layout"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:context=".MainActivity">
+        tools:context=".activities.MainActivity">
 
         <ImageView
             android:id="@+id/logo"
@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner_layout"
-        tools:context=".MainActivity">
+        tools:context=".activities.MainActivity">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"
@@ -142,6 +142,7 @@
             android:background="@drawable/signin_button"
             android:contentDescription="@string/login_button"
             android:fontFamily="@font/myriadpro"
+            android:onClick="login"
             android:text="@string/sign_in"
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
