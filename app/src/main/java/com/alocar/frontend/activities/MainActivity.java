@@ -12,14 +12,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alocar.frontend.R;
+import com.alocar.frontend.listeners.RetrofitListener;
+import com.alocar.frontend.models.ErrorObject;
+import com.alocar.frontend.models.UserCredentials;
+import com.alocar.frontend.retrofit.ApiServiceProvider;
+import com.alocar.frontend.retrofit.response.GenericResponse;
+import com.alocar.frontend.retrofit.response.LoginResponse;
+import com.alocar.frontend.retrofit.response.LoginStatusCode;
+import com.alocar.frontend.util.SessionUtil;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements RetrofitListener {
 
     ImageView logo;
     ImageView banner;
     TextView notMember;
     TextView signUp;
     boolean doubleBackToExitPressedOnce = false;
+    ApiServiceProvider apiServiceProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,7 @@ public class MainActivity extends BaseActivity {
         notMember = findViewById(R.id.already_member);
         signUp = findViewById(R.id.sign_in);
         attachKeyboardListeners(findViewById(R.id.login_screen));
+        apiServiceProvider = ApiServiceProvider.getInstance(this);
     }
 
     @Override
@@ -93,7 +103,29 @@ public class MainActivity extends BaseActivity {
     }
 
     public void login(View view) {
-        Intent messengerIntent = new Intent(this, MessengerActivity.class);
-        startActivity(messengerIntent);
+        UserCredentials credentials = new UserCredentials();
+        credentials.setEmail(((TextView)findViewById(R.id.email)).getText().toString());
+        credentials.setPassword(((TextView)findViewById(R.id.password)).getText().toString());
+        if (credentials.valid()) {
+            apiServiceProvider.login(credentials, this);
+        }
+    }
+
+    @Override
+    public void onResponseSuccess(GenericResponse responseBody, int apiFlag) {
+        if (responseBody.getCode() == LoginStatusCode.OK.getStatusCode()) {
+            SessionUtil.setAuthToken(((LoginResponse)responseBody).getAuthToken());
+            Intent messengerIntent = new Intent(this, MessengerActivity.class);
+            startActivity(messengerIntent);
+        } else {
+            TextView errorField = findViewById(R.id.errorField);
+            errorField.setVisibility(View.VISIBLE);
+            errorField.setText(responseBody.getMessage());
+        }
+    }
+
+    @Override
+    public void onResponseError(ErrorObject errorObject, Throwable throwable, int apiFlag) {
+        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
     }
 }

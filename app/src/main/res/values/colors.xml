@@ -8,4 +8,5 @@
     <color name="loginBorder">#40FFFFFF</color>
     <color name="signUp">#319CD6</color>
     <color name="signUpPressed">#BF319CD6</color>
+    <color name="error">#8A2D32</color>
 </resources>

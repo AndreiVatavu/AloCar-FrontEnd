@@ -17,6 +17,8 @@ import com.alocar.frontend.listeners.RetrofitListener;
 import com.alocar.frontend.models.ErrorObject;
 import com.alocar.frontend.models.SignUpRequest;
 import com.alocar.frontend.retrofit.ApiServiceProvider;
+import com.alocar.frontend.retrofit.response.GenericResponse;
+import com.alocar.frontend.retrofit.response.SignUpStatusCode;
 import com.alocar.frontend.util.Utils;
 
 public class SignUpActivity extends BaseActivity implements RetrofitListener {
@@ -24,6 +26,7 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
     ApiServiceProvider apiServiceProvider;
     TextView alreadyMember;
     TextView signIn;
+    ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
         setContentView(R.layout.activity_sign_up);
         alreadyMember = findViewById(R.id.already_member);
         signIn = findViewById(R.id.sign_in);
+        logo = findViewById(R.id.logo);
         attachKeyboardListeners(findViewById(R.id.sign_up_layout));
 
         apiServiceProvider = ApiServiceProvider.getInstance(this);
@@ -40,12 +44,14 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
     protected void onShowKeyboard(int keyboardHeight) {
         alreadyMember.setVisibility(View.GONE);
         signIn.setVisibility(View.GONE);
+        logo.setVisibility(View.GONE);
     }
 
     @Override
     protected void onHideKeyboard() {
         alreadyMember.setVisibility(View.VISIBLE);
         signIn.setVisibility(View.VISIBLE);
+        logo.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -104,18 +110,26 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
     }
 
     @Override
-    public void onResponseSuccess(String responseBodyString, int apiFlag) {
-        ConstraintLayout success = findViewById(R.id.success_registration);
-        ScrollView form = findViewById(R.id.form);
-        ImageView welcome = findViewById(R.id.welcome);
+    public void onResponseSuccess(GenericResponse responseBody, int apiFlag) {
+        SignUpStatusCode signUpStatusCode = SignUpStatusCode.getSignUpStatusCode(responseBody.getCode());
+        if (signUpStatusCode == SignUpStatusCode.OK) {
+            ConstraintLayout success = findViewById(R.id.success_registration);
+            ScrollView form = findViewById(R.id.form);
+            ImageView welcome = findViewById(R.id.welcome);
 
-        Utils.hideSoftKeyboard(this, getCurrentFocus());
-        form.setVisibility(View.GONE);
-        alreadyMember.setVisibility(View.GONE);
-        signIn.setVisibility(View.GONE);
+            Utils.hideSoftKeyboard(this, getCurrentFocus());
+            form.setVisibility(View.GONE);
+            alreadyMember.setVisibility(View.GONE);
+            signIn.setVisibility(View.GONE);
 
-        success.setVisibility(View.VISIBLE);
-        welcome.setVisibility(View.VISIBLE);
+            success.setVisibility(View.VISIBLE);
+            welcome.setVisibility(View.VISIBLE);
+        } else {
+            TextView errorField = findViewById(R.id.errorField);
+            errorField.setVisibility(View.VISIBLE);
+            errorField.setText(responseBody.getMessage());
+        }
+
     }
 
     @Override

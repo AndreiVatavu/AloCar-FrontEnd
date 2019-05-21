@@ -1,15 +1,18 @@
 package com.alocar.frontend.retrofit;
 
 import com.alocar.frontend.models.SignUpRequest;
+import com.alocar.frontend.models.UserCredentials;
+import com.alocar.frontend.retrofit.response.GenericResponse;
+import com.alocar.frontend.retrofit.response.LoginResponse;
 
-import org.springframework.http.ResponseEntity;
-
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiServices {
     @POST("signup")
-    Call<String> signUp(@Body SignUpRequest signUpRequest);
+    Call<GenericResponse> signUp(@Body SignUpRequest signUpRequest);
+
+    @POST("login")
+    Call<LoginResponse> login (@Body UserCredentials userCredentials);
 }
