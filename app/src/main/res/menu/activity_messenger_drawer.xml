@@ -7,37 +7,31 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_camera"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="Import" />
+                    android:id="@+id/acc_details"
+                    android:icon="@drawable/ic_avatar"
+                    android:title="Account details" />
                 <item
-                    android:id="@+id/nav_gallery"
-                    android:icon="@drawable/ic_menu_gallery"
-                    android:title="Gallery" />
-                <item
-                    android:id="@+id/nav_slideshow"
-                    android:icon="@drawable/ic_menu_slideshow"
-                    android:title="Slideshow" />
-                <item
-                    android:id="@+id/nav_manage"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="Tools" />
+                    android:id="@+id/car"
+                    android:icon="@drawable/ic_sports_car"
+                    android:title="Car details" />
             </group>
         </menu>
     </item>
 
-
-    <item android:title="Communicate">
+    <item android:title="Security">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/change_password"
+                    android:icon="@drawable/ic_key"
+                    android:title="Change password" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Logout" />
+            </group>
         </menu>
     </item>
+
 
 </menu>
