@@ -16,7 +16,7 @@
         <activity
             android:name=".activities.MessengerActivity"
             android:label="@string/title_activity_messenger"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SignUpActivity"
             android:windowSoftInputMode="stateHidden" />
