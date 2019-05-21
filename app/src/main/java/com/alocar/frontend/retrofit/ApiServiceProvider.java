@@ -8,6 +8,7 @@ import com.alocar.frontend.models.UserCredentials;
 import com.alocar.frontend.retrofit.response.GenericResponse;
 import com.alocar.frontend.retrofit.response.LoginResponse;
 import com.alocar.frontend.util.HttpUtil;
+import com.alocar.frontend.util.SessionUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +56,21 @@ public class ApiServiceProvider extends RetrofitBase {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, 0);
+            }
+        });
+    }
+
+    public void logout(final RetrofitListener retrofitListener) {
+        Call<GenericResponse> call = apiServices.logout(SessionUtil.getAuthToken());
+        call.enqueue(new Callback<GenericResponse>() {
+            @Override
+            public void onResponse(Call<GenericResponse> call, Response<GenericResponse> response) {
+                retrofitListener.onResponseSuccess(response.body(), MessengerFlags.LOGOUT.getFlag());
+            }
+
+            @Override
+            public void onFailure(Call<GenericResponse> call, Throwable t) {
+                retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, MessengerFlags.LOGOUT.getFlag());
             }
         });
     }

@@ -95,6 +95,7 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
     public void finish(View view) {
         Intent messengerIntent = new Intent(this, MessengerActivity.class);
         startActivity(messengerIntent);
+        finish();
     }
 
     public void signUp(View view) {
@@ -105,8 +106,13 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
                 .withPhoneNumber(((EditText)findViewById(R.id.phone_no)).getText().toString())
                 .withPassword(((EditText)findViewById(R.id.password)).getText().toString())
                 .build();
-
-        apiServiceProvider.signUp(signUpRequest, this);
+        if (signUpRequest.getPassword().equals(((TextView)findViewById(R.id.confirm_password)).getText().toString())) {
+            apiServiceProvider.signUp(signUpRequest, this);
+        } else {
+            TextView errorField = findViewById(R.id.errorField);
+            errorField.setVisibility(View.VISIBLE);
+            errorField.setText("Passwords don't match");
+        }
     }
 
     @Override

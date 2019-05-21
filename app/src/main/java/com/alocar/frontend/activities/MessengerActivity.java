@@ -15,9 +15,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.alocar.frontend.R;
+import com.alocar.frontend.listeners.RetrofitListener;
+import com.alocar.frontend.models.ErrorObject;
+import com.alocar.frontend.retrofit.ApiServiceProvider;
+import com.alocar.frontend.retrofit.MessengerFlags;
+import com.alocar.frontend.retrofit.response.GenericResponse;
 
 public class MessengerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, RetrofitListener {
+
+    ApiServiceProvider apiServiceProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,8 @@ public class MessengerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        apiServiceProvider = ApiServiceProvider.getInstance(this);
     }
 
     @Override
@@ -83,16 +92,28 @@ public class MessengerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.acc_details) {
-            // Handle the camera action
-            Intent accIntent = new Intent(this, AccountDetails.class);
-            startActivity(accIntent);
-        } else if (id == R.id.car) {
-
+        switch (id) {
+            case R.id.logout:
+                apiServiceProvider.logout(this);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onResponseSuccess(GenericResponse responseBody, int apiFlag) {
+        if (MessengerFlags.LOGOUT.getFlag() == apiFlag) {
+            Intent loginIntent = new Intent(this, MainActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onResponseError(ErrorObject errorObject, Throwable throwable, int apiFlag) {
+
     }
 }

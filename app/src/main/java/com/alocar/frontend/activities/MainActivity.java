@@ -117,6 +117,7 @@ public class MainActivity extends BaseActivity implements RetrofitListener {
             SessionUtil.setAuthToken(((LoginResponse)responseBody).getAuthToken());
             Intent messengerIntent = new Intent(this, MessengerActivity.class);
             startActivity(messengerIntent);
+            finish();
         } else {
             TextView errorField = findViewById(R.id.errorField);
             errorField.setVisibility(View.VISIBLE);
