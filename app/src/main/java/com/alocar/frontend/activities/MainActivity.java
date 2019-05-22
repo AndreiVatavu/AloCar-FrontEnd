@@ -15,11 +15,14 @@ import com.alocar.frontend.R;
 import com.alocar.frontend.listeners.RetrofitListener;
 import com.alocar.frontend.models.ErrorObject;
 import com.alocar.frontend.models.UserCredentials;
+import com.alocar.frontend.recycleview.Contact;
 import com.alocar.frontend.retrofit.ApiServiceProvider;
 import com.alocar.frontend.retrofit.response.GenericResponse;
 import com.alocar.frontend.retrofit.response.LoginResponse;
 import com.alocar.frontend.retrofit.response.LoginStatusCode;
 import com.alocar.frontend.util.SessionUtil;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements RetrofitListener {
 
@@ -126,7 +129,14 @@ public class MainActivity extends BaseActivity implements RetrofitListener {
     }
 
     @Override
+    public void onResponseSuccess(List<Contact> responseBody, int apiFlag) {
+
+    }
+
+    @Override
     public void onResponseError(ErrorObject errorObject, Throwable throwable, int apiFlag) {
         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
     }
+
+
 }

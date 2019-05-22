@@ -16,10 +16,13 @@ import com.alocar.frontend.R;
 import com.alocar.frontend.listeners.RetrofitListener;
 import com.alocar.frontend.models.ErrorObject;
 import com.alocar.frontend.models.SignUpRequest;
+import com.alocar.frontend.recycleview.Contact;
 import com.alocar.frontend.retrofit.ApiServiceProvider;
 import com.alocar.frontend.retrofit.response.GenericResponse;
 import com.alocar.frontend.retrofit.response.SignUpStatusCode;
 import com.alocar.frontend.util.Utils;
+
+import java.util.List;
 
 public class SignUpActivity extends BaseActivity implements RetrofitListener {
 
@@ -135,6 +138,11 @@ public class SignUpActivity extends BaseActivity implements RetrofitListener {
             errorField.setVisibility(View.VISIBLE);
             errorField.setText(responseBody.getMessage());
         }
+
+    }
+
+    @Override
+    public void onResponseSuccess(List<Contact> responseBody, int apiFlag) {
 
     }
 
