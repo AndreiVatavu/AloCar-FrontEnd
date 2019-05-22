@@ -5,10 +5,13 @@ import android.content.Context;
 import com.alocar.frontend.listeners.RetrofitListener;
 import com.alocar.frontend.models.SignUpRequest;
 import com.alocar.frontend.models.UserCredentials;
+import com.alocar.frontend.recycleview.Contact;
 import com.alocar.frontend.retrofit.response.GenericResponse;
 import com.alocar.frontend.retrofit.response.LoginResponse;
 import com.alocar.frontend.util.HttpUtil;
 import com.alocar.frontend.util.SessionUtil;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,6 +74,21 @@ public class ApiServiceProvider extends RetrofitBase {
             @Override
             public void onFailure(Call<GenericResponse> call, Throwable t) {
                 retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, MessengerFlags.LOGOUT.getFlag());
+            }
+        });
+    }
+
+    public void search(final RetrofitListener retrofitListener) {
+        Call<List<Contact>> call = apiServices.search();
+        call.enqueue(new Callback<List<Contact>>() {
+            @Override
+            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+                retrofitListener.onResponseSuccess(response.body(), MessengerFlags.SEARCH.getFlag());
+            }
+
+            @Override
+            public void onFailure(Call<List<Contact>> call, Throwable t) {
+                retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, MessengerFlags.SEARCH.getFlag());
             }
         });
     }
