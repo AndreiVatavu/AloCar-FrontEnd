@@ -1,4 +1,4 @@
-package com.alocar.frontend.recycleview;
+package com.alocar.frontend.recycleview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alocar.frontend.R;
+import com.alocar.frontend.recycleview.Contact;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 

@@ -19,33 +19,24 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.alocar.frontend.R;
 import com.alocar.frontend.listeners.RetrofitListener;
 import com.alocar.frontend.models.ErrorObject;
 import com.alocar.frontend.recycleview.Contact;
-import com.alocar.frontend.recycleview.ContactsAdapter;
+import com.alocar.frontend.recycleview.adapter.ContactsAdapter;
 import com.alocar.frontend.recycleview.MyDividerItemDecoration;
 import com.alocar.frontend.retrofit.ApiServiceProvider;
 import com.alocar.frontend.retrofit.MessengerFlags;
 import com.alocar.frontend.retrofit.response.GenericResponse;
 import com.alocar.frontend.util.Utils;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -261,7 +252,6 @@ public class MessengerActivity extends AppCompatActivity
         });
         set.start();
 
-
         // start x-index for circular animation
         int cx = toolbar.getWidth() - (int) (getResources().getDimension(R.dimen.dp48)* (0.5f + positionFromRight));
         // start y-index for circular animation
@@ -348,5 +338,6 @@ public class MessengerActivity extends AppCompatActivity
         Intent messageIntent = new Intent(this, Message.class);
         messageIntent.putExtra("user", contact);
         startActivity(messageIntent);
+        hideSearchBar(positionFromRight);
     }
 }

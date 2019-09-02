@@ -5,6 +5,7 @@ package com.alocar.frontend.retrofit.response;
  */
 public class LoginResponse extends GenericResponse{
     private String authToken;
+    private int uid;
 
     public LoginResponse() {
 
@@ -20,5 +21,13 @@ public class LoginResponse extends GenericResponse{
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 }

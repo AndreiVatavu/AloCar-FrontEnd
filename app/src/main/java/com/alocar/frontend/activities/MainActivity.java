@@ -21,6 +21,7 @@ import com.alocar.frontend.retrofit.response.GenericResponse;
 import com.alocar.frontend.retrofit.response.LoginResponse;
 import com.alocar.frontend.retrofit.response.LoginStatusCode;
 import com.alocar.frontend.util.SessionUtil;
+import com.google.firebase.FirebaseApp;
 
 import java.util.List;
 
@@ -118,6 +119,7 @@ public class MainActivity extends BaseActivity implements RetrofitListener {
     public void onResponseSuccess(GenericResponse responseBody, int apiFlag) {
         if (responseBody.getCode() == LoginStatusCode.OK.getStatusCode()) {
             SessionUtil.setAuthToken(((LoginResponse)responseBody).getAuthToken());
+            SessionUtil.setUid(String.valueOf(((LoginResponse)responseBody).getUid()));
             Intent messengerIntent = new Intent(this, MessengerActivity.class);
             startActivity(messengerIntent);
             finish();

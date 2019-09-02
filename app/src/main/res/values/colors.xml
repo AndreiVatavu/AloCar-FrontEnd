@@ -11,4 +11,5 @@
     <color name="error">#8A2D32</color>
     <color name="contact_name">#333333</color>
     <color name="contact_number">#8c8c8c</color>
+    <color name="send_message">#E6E6E6</color>
 </resources>
