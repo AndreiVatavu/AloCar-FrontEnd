@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">AloCar</string>
-    <string name="welcome_to_alocar">WELCOME TO ALOCAR</string>
+    <string name="app_name">UTube++</string>
+    <string name="welcome_to_alocar">WELCOME TO UTube++</string>
     <string name="login_button">Login Button</string>
     <string name="logo">Logo</string>
     <string name="username">Username</string>
@@ -16,7 +16,7 @@
     <string name="color">Color</string>
     <string name="registration_successfull">REGISTRATION SUCCESSFULL!</string>
     <string name="finish">FINISH</string>
-    <string name="title_activity_messenger">Messenger</string>
+    <string name="title_activity_messenger">UTube++</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -27,4 +27,7 @@
     <string name="server_error">Server Error</string>
     <string name="action_search">Search</string>
     <string name="searchwithdot">Search...</string>
+    <string name="title_activity_player">Player</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="refresh">Refresh</string>
 </resources>

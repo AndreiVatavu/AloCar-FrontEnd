@@ -10,10 +10,6 @@
                     android:id="@+id/acc_details"
                     android:icon="@drawable/ic_avatar"
                     android:title="Account details" />
-                <item
-                    android:id="@+id/car"
-                    android:icon="@drawable/ic_sports_car"
-                    android:title="Car details" />
             </group>
         </menu>
     </item>

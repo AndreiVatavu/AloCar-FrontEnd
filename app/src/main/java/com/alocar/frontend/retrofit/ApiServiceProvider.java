@@ -78,8 +78,8 @@ public class ApiServiceProvider extends RetrofitBase {
         });
     }
 
-    public void search(final RetrofitListener retrofitListener) {
-        Call<List<Contact>> call = apiServices.search();
+    public void search(String query, final RetrofitListener retrofitListener) {
+        Call<List<Contact>> call = apiServices.search(query);
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
@@ -89,6 +89,36 @@ public class ApiServiceProvider extends RetrofitBase {
             @Override
             public void onFailure(Call<List<Contact>> call, Throwable t) {
                 retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, MessengerFlags.SEARCH.getFlag());
+            }
+        });
+    }
+
+    public void saveToFavorite(Contact contact, final RetrofitListener retrofitListener) {
+        Call<GenericResponse> call = apiServices.saveToFavorite(contact);
+        call.enqueue(new Callback<GenericResponse>() {
+            @Override
+            public void onResponse(Call<GenericResponse> call, Response<GenericResponse> response) {
+                retrofitListener.onResponseSuccess(response.body(), MessengerFlags.SAVE_FAVORITE.getFlag());
+            }
+
+            @Override
+            public void onFailure(Call<GenericResponse> call, Throwable t) {
+                retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, MessengerFlags.SAVE_FAVORITE.getFlag());
+            }
+        });
+    }
+
+    public void getFavoriteSongs(String query, final RetrofitListener retrofitListener) {
+        Call<List<Contact>> call = apiServices.getFavoriteSongs(query);
+        call.enqueue(new Callback<List<Contact>>() {
+            @Override
+            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
+                retrofitListener.onResponseSuccess(response.body(), MessengerFlags.GET_FAVORITE.getFlag());
+            }
+
+            @Override
+            public void onFailure(Call<List<Contact>> call, Throwable t) {
+                retrofitListener.onResponseError(HttpUtil.getServerErrorPojo(context), t, MessengerFlags.GET_FAVORITE.getFlag());
             }
         });
     }

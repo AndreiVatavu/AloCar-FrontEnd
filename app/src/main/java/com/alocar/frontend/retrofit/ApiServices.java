@@ -11,6 +11,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiServices {
@@ -23,6 +24,12 @@ public interface ApiServices {
     @POST("/logout/")
     Call<GenericResponse> logout(@Body String authToken);
 
-    @GET("/search/")
-    Call<List<Contact>> search();
+    @GET("/searchYouTube/")
+    Call<List<Contact>> search(@Header("query") String query);
+
+    @POST("/saveFavorite/")
+    Call<GenericResponse> saveToFavorite(@Body Contact contact);
+
+    @GET("/getFavoriteSongs/")
+    Call<List<Contact>> getFavoriteSongs(@Header("userId") String query);
 }

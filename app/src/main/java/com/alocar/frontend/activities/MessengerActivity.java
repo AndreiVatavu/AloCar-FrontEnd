@@ -4,9 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -29,15 +27,17 @@ import com.alocar.frontend.R;
 import com.alocar.frontend.listeners.RetrofitListener;
 import com.alocar.frontend.models.ErrorObject;
 import com.alocar.frontend.recycleview.Contact;
-import com.alocar.frontend.recycleview.adapter.ContactsAdapter;
 import com.alocar.frontend.recycleview.MyDividerItemDecoration;
+import com.alocar.frontend.recycleview.adapter.ContactsAdapter;
 import com.alocar.frontend.retrofit.ApiServiceProvider;
 import com.alocar.frontend.retrofit.MessengerFlags;
 import com.alocar.frontend.retrofit.response.GenericResponse;
+import com.alocar.frontend.util.SessionUtil;
 import com.alocar.frontend.util.Utils;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +59,10 @@ public class MessengerActivity extends AppCompatActivity
     private List<Contact> contactList;
     private SearchView searchView;
 
+    private RecyclerView recyclerViewFav;
+    private ContactsAdapter mAdapterFav;
+    private List<Contact> contactListFav;
+
     // url to fetch contacts json
     private static final String URL = "https://api.androidhive.info/json/contacts.json";
 
@@ -68,15 +72,6 @@ public class MessengerActivity extends AppCompatActivity
         setContentView(R.layout.activity_messenger);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -96,6 +91,7 @@ public class MessengerActivity extends AppCompatActivity
         appBar = findViewById(R.id.appBar);
         searchAppBarLayout = findViewById(R.id.layout_appbar_search);
         searchEditText = findViewById(R.id.editText_search);
+        final MessengerActivity messengerActivity = this;
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -109,7 +105,7 @@ public class MessengerActivity extends AppCompatActivity
 
             @Override
             public void afterTextChanged(Editable s) {
-                mAdapter.getFilter().filter(s.toString());
+                apiServiceProvider.search(s.toString(), messengerActivity);
             }
         });
 
@@ -123,7 +119,17 @@ public class MessengerActivity extends AppCompatActivity
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, DividerItemDecoration.VERTICAL, 36));
         recyclerView.setAdapter(mAdapter);
 
-        apiServiceProvider.search(this);
+        recyclerViewFav = findViewById(R.id.recycler_view_fav);
+        contactListFav = new ArrayList<>();
+        mAdapterFav = new ContactsAdapter(this, contactListFav, this);
+
+        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getApplicationContext());
+        recyclerViewFav.setLayoutManager(mLayoutManager2);
+        recyclerViewFav.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewFav.addItemDecoration(new MyDividerItemDecoration(this, DividerItemDecoration.VERTICAL, 36));
+        recyclerViewFav.setAdapter(mAdapterFav);
+
+        apiServiceProvider.getFavoriteSongs(SessionUtil.getUid(), this);
     }
 
     @Override
@@ -149,6 +155,10 @@ public class MessengerActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        if (id == R.id.refresh) {
+            apiServiceProvider.getFavoriteSongs(SessionUtil.getUid(), this);
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
@@ -187,13 +197,24 @@ public class MessengerActivity extends AppCompatActivity
 
     @Override
     public void onResponseSuccess(List<Contact> responseBody, int apiFlag) {
-        if (MessengerFlags.SEARCH.getFlag() == apiFlag) {
+        if (MessengerFlags.SEARCH.getFlag() == apiFlag && responseBody != null) {
+            for (Contact contact : responseBody) {
+                contact.setUserId(SessionUtil.getUid());
+            }
             // adding contacts to contacts list
             contactList.clear();
             contactList.addAll(responseBody);
 
             // refreshing recycler view
             mAdapter.notifyDataSetChanged();
+        }
+
+        if (MessengerFlags.GET_FAVORITE.getFlag() == apiFlag && responseBody != null) {
+            contactListFav.clear();
+            contactListFav.addAll(responseBody);
+
+            // refreshing recycler view
+            mAdapterFav.notifyDataSetChanged();
         }
     }
 
@@ -222,6 +243,7 @@ public class MessengerActivity extends AppCompatActivity
      * @param positionFromRight
      */
     private void showSearchBar(float positionFromRight) {
+        recyclerViewFav.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         AnimatorSet set = new AnimatorSet();
         set.playTogether(
@@ -281,6 +303,7 @@ public class MessengerActivity extends AppCompatActivity
      */
     private void hideSearchBar(float positionFromRight) {
         recyclerView.setVisibility(View.GONE);
+        recyclerViewFav.setVisibility(View.VISIBLE);
         // start x-index for circular animation
         int cx = toolbar.getWidth() - (int) (getResources().getDimension(R.dimen.dp48) * (0.5f + positionFromRight));
         // start  y-index for circular animation
@@ -335,8 +358,9 @@ public class MessengerActivity extends AppCompatActivity
 
     @Override
     public void onContactSelected(Contact contact) {
-        Intent messageIntent = new Intent(this, Message.class);
+        Intent messageIntent = new Intent(this, Player.class);
         messageIntent.putExtra("user", contact);
+        messageIntent.putExtra("videoList", (Serializable) contactList);
         startActivity(messageIntent);
         hideSearchBar(positionFromRight);
     }
